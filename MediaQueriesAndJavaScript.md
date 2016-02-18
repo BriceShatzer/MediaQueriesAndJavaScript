@@ -22,6 +22,7 @@ Array.prototype.forEach.call(allMediaQueries, function(rule,i){
   if(uniqueMediaQueries.indexOf(rule) === -1){
     uniqueMediaQueries.push(rule);
   }
+});
 
 //print the results 
 console.log('Total Media Queries: '+allMediaQueries.length);
@@ -29,6 +30,5 @@ console.log('to view them use console.dir(allMediaQueries) ');
 console.log('---');
 console.log('Total Unique Media Queries: '+uniqueMediaQueries.length);
 console.log('to view them use console.dir(uniqueMediaQueries) ');
-});
 
 ```
