@@ -5,14 +5,15 @@
 *Some thoughts on getting around that issue [here](http://stackoverflow.com/questions/3211536/accessing-cross-domain-style-sheet-with-cssrules)* 
 
 ```javascript
-var allMediaQueries, uniqueMediaQueries = [];
+var allMediaQueries = [];
+var uniqueMediaQueries = [];
 
 //isolate the style sheet you want to work with. 
 var rules = document.styleSheets[3].cssRules;
 
   //jQuery.each(rules,function(i,val){
   Array.prototype.forEach.call(rules, function(val,i){
-    if(val instanceof CSSMediaRule){allMediaQueries.push(val.media)}
+    if(val instanceof CSSMediaRule){allMediaQueries.push(val.media.mediaText)}
 })
 
 
@@ -23,7 +24,5 @@ Array.prototype.forEach(allMediaQuries, function(rule,i){
     uniqueMediaQueries.push(rule);
   }
 });
-
-
 
 ```
