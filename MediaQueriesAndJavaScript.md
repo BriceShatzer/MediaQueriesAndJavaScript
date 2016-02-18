@@ -1,7 +1,8 @@
 #Getting all media queries present in a stylesheet 
 
 
-*Note: Access to the cssRules attribute is subject to cross-origin  stylesheet*
+*Note: Access to the cssRules attribute is subject to the cross-origin policy*  
+*Some thoughts on getting around that issue [here](http://stackoverflow.com/questions/3211536/accessing-cross-domain-style-sheet-with-cssrules)* 
 
 ```javascript
 var mediaQueries = [];
