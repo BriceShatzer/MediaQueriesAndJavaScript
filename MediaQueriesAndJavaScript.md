@@ -11,7 +11,6 @@ var uniqueMediaQueries = [];
 //isolate the style sheet you want to work with. 
 var rules = document.styleSheets[3].cssRules;
 
-//get all of the media queries defined
 Array.prototype.forEach.call(rules, function(val,i){
     if(val instanceof CSSMediaRule){
         allMediaQueries.push(val.media.mediaText);
@@ -26,10 +25,7 @@ Array.prototype.forEach.call(allMediaQueries, function(rule,i){
 });
 
 //print the results 
-console.log('Total Media Queries: '+allMediaQueries.length);
-console.log('to view them use console.dir(allMediaQueries) ');
-console.log('---');
-console.log('Total Unique Media Queries: '+uniqueMediaQueries.length);
-console.log('to view them use console.dir(uniqueMediaQueries) ');
+console.log('Total Media Queries: '+allMediaQueries.length+'\nto view them use console.dir(allMediaQueries)');
+console.log('Total Unique Media Queries: '+uniqueMediaQueries.length+'\nto view them use console.dir(uniqueMediaQueries)');
 
 ```
