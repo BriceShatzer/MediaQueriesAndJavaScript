@@ -18,7 +18,7 @@ var rules = document.styleSheets[3].cssRules;
 
 
 var uniqueNames = [];
-Array.prototype.forEach(allMediaQuries, function(rule,i){
+Array.prototype.forEach(allMediaQueries, function(rule,i){
   //if($.inArray(rule, uniqueMediaQueries) === -1){
   if(uniqueMediaQueries.indexOf(rule) === -1){
     uniqueMediaQueries.push(rule);
