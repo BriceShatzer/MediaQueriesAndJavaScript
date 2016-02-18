@@ -1,7 +1,7 @@
 #Getting all media queries present in a stylesheet 
 
 
-**Note: Access to the cssRules attribute is subject to cross-origin  stylesheet**
+*Note: Access to the cssRules attribute is subject to cross-origin  stylesheet*
 
 ```javascript
 var mediaQueries = [];
