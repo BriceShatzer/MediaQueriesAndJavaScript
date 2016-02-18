@@ -11,18 +11,24 @@ var uniqueMediaQueries = [];
 //isolate the style sheet you want to work with. 
 var rules = document.styleSheets[3].cssRules;
 
-  //jQuery.each(rules,function(i,val){
-  Array.prototype.forEach.call(rules, function(val,i){
-    if(val instanceof CSSMediaRule){allMediaQueries.push(val.media.mediaText)}
+Array.prototype.forEach.call(rules, function(val,i){
+    if(val instanceof CSSMediaRule){
+        allMediaQueries.push(val.media.mediaText);
+    }
 })
 
-
-var uniqueNames = [];
-Array.prototype.forEach(allMediaQueries, function(rule,i){
-  //if($.inArray(rule, uniqueMediaQueries) === -1){
+//removed duplicates 
+Array.prototype.forEach.call(allMediaQueries, function(rule,i){  
   if(uniqueMediaQueries.indexOf(rule) === -1){
     uniqueMediaQueries.push(rule);
   }
+
+//print the results 
+console.log('Total Media Queries: '+allMediaQueries.length);
+console.log('to view them use console.dir(allMediaQueries) ');
+console.log('---');
+console.log('Total Unique Media Queries: '+uniqueMediaQueries.length);
+console.log('to view them use console.dir(uniqueMediaQueries) ');
 });
 
 ```
