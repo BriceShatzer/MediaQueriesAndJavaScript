@@ -40,8 +40,9 @@ for (var entry of mediaQueriesMap){
 
 console.table(reportingTable);
 
+
+//optional - print results to a csv formated string that can be saved via a text editor
 /*
-//optional- print results to a csv formated string that can be saved via a text editor
 var csv = '--Media Query--,--times it appears--,--style rules within this media rule--\n';
 for (var entry of mediaQueriesMap){ 
     csv+=entry[0]+', '+entry[1].occurrences+', '+entry[1].styleRules.length+'\n'
