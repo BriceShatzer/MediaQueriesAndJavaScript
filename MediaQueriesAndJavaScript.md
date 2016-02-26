@@ -7,10 +7,26 @@
 ```javascript
 var mediaQueriesMap = new Map();
 
-//isolate the style sheet you want to work with. 
-var rules = document.styleSheets[3].cssRules;
+var rules;
 
-//create the map 
+
+//--isolate the style sheet you want to work with. 
+
+//set it directly by picking it from the styleSheets array. Here we're the sheet at index 3.
+rules = document.styleSheets[3].cssRules;
+
+//set it by referencing it's url
+function getStyleSheetByUrl(url){
+    for (var i = document.styleSheets.length - 1; i >= 0; i--) {
+        if( document.styleSheets[i].href == url){
+            rules = document.styleSheets[i].cssRules;
+        }
+    }
+}
+getStyleSheetByUrl('http://www.webste.com/style.css');
+
+
+//--create the map 
 Array.prototype.forEach.call(rules, function(rule,i){
     if(rule instanceof CSSMediaRule){
         var mediaQueryRule = rule.media.mediaText;
@@ -28,7 +44,7 @@ Array.prototype.forEach.call(rules, function(rule,i){
     }
 });
 
-//print results to a console table 
+//--print results to a console table 
 var reportingTable = []
 for (var entry of mediaQueriesMap){
     reportingTable.push( {
