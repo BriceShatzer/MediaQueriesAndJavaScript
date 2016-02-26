@@ -33,10 +33,8 @@ Array.prototype.forEach.call(rules, function(rule,i){
         if(!mediaQueriesMap.has(mediaQueryRule)){//adds rule to the map if missing
             mediaQueriesMap.set(mediaQueryRule, {styleRules:[], occurrences:0});
         }
-
         //log the rule's occurance
         mediaQueriesMap.get(mediaQueryRule).occurrences++;
-
         //add this media queries style rules to the map
         Array.prototype.forEach.call(rule.cssRules, function(styleRule,i){        
             mediaQueriesMap.get(mediaQueryRule).styleRules.push(styleRule);        
