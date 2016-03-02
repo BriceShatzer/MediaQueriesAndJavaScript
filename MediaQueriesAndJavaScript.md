@@ -12,7 +12,7 @@ var rules;
 
 //--isolate the style sheet you want to work with. 
 
-//set it directly by picking it from the styleSheets array. Here we're the sheet at index 3.
+//set it directly by picking it from the styleSheets array. Here we're using the sheet at index 3.
 rules = document.styleSheets[3].cssRules;
 
 //set it by referencing it's url
