@@ -122,10 +122,15 @@ all of media queries that were created using foundation variables
 #### expanding the usage
 
 _The `mediaQueriesMap` map that is created offers a fair bit of utility_
+_offers a fair bit of utility_
+_The `mediaQueriesMap` map that is created offers a fair bit of utility that can be expanded on and used_
+_The `mediaQueriesMap` map that is created offers a fair bit of flexibility_
+_...that can be utilized and expanded on._
+_The `mediaQueriesMap` map that is created is fairly flexible and can be used to produce additional insights._
 
-_The `mediaQueriesMap` map that is created offers a lot of flexibility_
-...that can be utilized and expanded on.
 
+The `mediaQueriesMap` map that is created is fairly flexible. In addition to creating a general overview, it can be used to drill into specific media queries.
+From the previous 
 In the prior example we can see that the media query `screen and (max-width: 1000px)` is being used in the style sheet 13 different times to declare 13 different rules. Using our existing `mediaQueriesMap` variable we can see what [selectors](https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleRule#selectorText) are being used for each of those rules.
 ```javascript
 var rules_at_this_breakpoint = mediaQueriesMap.get("screen and (max-width: 1000px)").styleRules
