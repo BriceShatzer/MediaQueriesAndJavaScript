@@ -15,10 +15,80 @@ In the "excitement" of diving into the structure and functionality of the codeba
 While the overall [thoughtfulness around how frontends are built](http://shop.oreilly.com/product/0636920040156.do) has improved in recent years,
 generally speaking, styling simply isn't treated with the same amount of care and consideration as other parts of the frontend stack. Marry this apathy with tools like Sass/LESS/Stylus which enable developers to easily write complex and powerful CSS, and it's easy to envision the sort of tangled, nightmarish abomination that might exist in this world. 
 
-The likelihood of confronting this sort of monstrosity is never more likely then when a developer inherits an existing web project. 
-<!-- In my experience, this usually takes the form of a framework like bootstrap or foundation that has so many layers of paint and ad hoc fixes applied that [Theseus](https://en.wikipedia.org/wiki/Ship_of_Theseus) would be proud.  -->
-In my experience, this usually takes the form of a framework like bootstrap or foundation that has so many layers of paint and ad hoc fixes applied that [Theseus]() would be proud. 
-In my experience, this usually takes the form of a framework like bootstrap or foundation that has had so many layers of paint and ad hoc fixes applied to it that [Theseus]() would be proud. 
+<!-- The likelihood of confronting this sort of monstrosity is never more likely then when a developer inherits an existing web project. <!-- <<< maybe unneeded --> 
+
+<!-- In my experience, this usually takes the form of a framework like bootstrap or foundation that has so many layers of paint and ad hoc fixes applied that [Theseus](https://en.wikipedia.org/wiki/Ship_of_Theseus) would be proud.  
+In my experience, this usually takes the form of a framework like bootstrap or foundation that has so many layers of paint and ad hoc fixes applied that [Theseus]() would be proud. -->
+In my experience, this usually takes the form of a framework like bootstrap or foundation that has had so many layers of paint and ad hoc fixes applied to it that [Theseus](https://en.wikipedia.org/wiki/Ship_of_Theseus) would be proud. 
+
+
+The likelihood of confronting this sort of monstrosity is never higher then when a developer inherits an existing web project. <!-- <<< maybe unneeded --> 
+On the surface, poorly written styling might not seem like a big issue. 
+
+Unfortunately, when the time comes to make updates to the project, the flaws and idiosyncrasies that exist in the CSS can
+quickly become a massive time sink as ad hoc fixes for one problem [cascades](https://youtu.be/ja0jS_toKxk) into other issues. The ideal course of action would be to go through and completely refactor the styling, 
+but due to time constraints and the perceived magnitude of the task, it's something that is rarely is attempted. If only there was a way to easily see where potential issues might exist in order to provide a starting place for the process...
+
+
+In auditing the our media queries, we can 
+
+An audit of the a sites media queries can:<!--  provide insight into:  -->
+
+- highlight places where mixed length unit values might have been used
+- spot inconsistent or mistyped values
+- find potential style overlaps and places to check for unintentional "double styling"
+- point to weird-edge cases & one-offs that could potentially be investigated.
+
+...and this discovery and documentation process can be automated using JavaScript. 
+
+And we can a
+
+
+We can automate the discovery and documentation process using javascript. 
+
+Media queries 
+
+
+
+
+
+If only there was some way to see where potential issues might exist, and start 
+
+and/or 
+
+
+high impact low effort
+
+
+some low hanging fruit to get started with...
+
+Media Queries are 
+Auditing Media your 
+
+
+We can automate the discovery and documentation process using javascript. 
+
+
+
+- bring code into a unified and consistent state
+- preventing the mixing of [absolute](https://developer.mozilla.org/en-US/docs/Web/CSS/length#Absolute_length_units) & [font-relative](https://developer.mozilla.org/en-US/docs/Web/CSS/length#Font-relative_lengths) length units.
+- easily spot inconsistent or mistyped values
+- help to spot overlaps and places to check for unintentional "double styling"
+- highlight weird-edge cases & one-offs that could potentially be investigated.
+
+
+
+CSS [unit](https://github.com/jamesshore/quixote/blob/master/README.md) and [regression](https://github.com/Huddle/PhantomCSS) testing would go a long way in preventing (or at least helping untangle) these sorts of issues, they are far from the standard industry practice. 
+
+<!--
+CSS unit and regression testing might have helped in preventing the issue, but isn't really much use in cleaning up the mess.  
+refactoring becomes the best course of action. 
+don't don't really do much to help with refactoring. 
+-->
+
+
+
+
 
 
 
@@ -30,25 +100,13 @@ Issue begin to arises
 
 While on the appearing somewhat 
 These sort
-
 ...this is an issue because...
 
- 
-Tackling 
 
 
-- bring code into a unified and consistent state
-- preventing the mixing of [absolute](https://developer.mozilla.org/en-US/docs/Web/CSS/length#Absolute_length_units) & [font-relative](https://developer.mozilla.org/en-US/docs/Web/CSS/length#Font-relative_lengths) length units.
-- easily spot inconsistent or mistyped values
-- help to spot overlaps and places to check for unintentional "double styling"
-- highlight weird-edge cases & one-offs that could potentially be investigated.
+<!-- While CSS [unit](https://github.com/jamesshore/quixote/blob/master/README.md) and [regression](https://github.com/Huddle/PhantomCSS) testing do exist, they are far from the standard industry practice.  -->
 
-
-
-
-
-While CSS [unit](https://github.com/jamesshore/quixote/blob/master/README.md) and [regression](https://github.com/Huddle/PhantomCSS) testing do exist, they are far from the standard industry practice. 
-This means we are basically left with two options when dealing with styling:  
+CSS [unit](https://github.com/jamesshore/quixote/blob/master/README.md) and [regression](https://github.com/Huddle/PhantomCSS) testing would go a long way in preventing (or at least helping untangle) the issue, they are far from the standard industry practice. This means we are basically left with two options when dealing with styling:  
 
 - Manually going through all of the includes, noting any media queries that are uncovered,  
 - or wait until you see unexpected behavior and debug issues on an ad-hoc basis
