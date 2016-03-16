@@ -1,19 +1,161 @@
 ##Auditing media queries using javascript
 
-This isn't a bad idea to
-Just want the code? [Here it is]().
 
-While CSS unit testing [does exist](https://github.com/jamesshore/quixote/blob/master/README.md), it's far
+**TL;DR:**: You can use JavaScript to get an better understanding of the media queries that are present in your project. Don't care about the rational behind doing something like this and are just looking for a snippet? [go here]()
+
+<!-- Inheriting an existing web project is always one of the more interesting and (potentially infuriating) things that can happen to you as a developer. 
+
+Even if the codebase has been well documented and written in a clear and concise manor
+In the "excitement" of diving into the structure and functionality of the codebase, styling is often overlooked.
+ -->
+
+
+<!-- While the overall [thoughtfulness around how frontends are built](http://shop.oreilly.com/product/0636920040156.do) in general has improved in recent years,  -->
+
+While the overall [thoughtfulness around how frontends are built](http://shop.oreilly.com/product/0636920040156.do) has improved in recent years,
+generally speaking, styling simply isn't treated with the same amount of care and consideration as other parts of the frontend stack. Marry this apathy with tools like Sass/LESS/Stylus which enable developers to easily write complex and powerful CSS, and it's easy to envision the sort of tangled, nightmarish abomination that might exist in this world. 
+
+The likelihood of confronting this sort of monstrosity is never more likely then when a developer inherits an existing web project. 
+<!-- In my experience, this usually takes the form of a framework like bootstrap or foundation that has so many layers of paint and ad hoc fixes applied that [Theseus](https://en.wikipedia.org/wiki/Ship_of_Theseus) would be proud.  -->
+In my experience, this usually takes the form of a framework like bootstrap or foundation that has so many layers of paint and ad hoc fixes applied that [Theseus]() would be proud. 
+In my experience, this usually takes the form of a framework like bootstrap or foundation that has had so many layers of paint and ad hoc fixes applied to it that [Theseus]() would be proud. 
+
+
+
+This sort of situation, while gross-looking, may seem benign.
+Issues begin to arises when 
+
+After all, if it ain't broke...
+Issue begin to arises 
+
+While on the appearing somewhat 
+These sort
+
+...this is an issue because...
+
+ 
+Tackling 
+
+
+- bring code into a unified and consistent state
+- preventing the mixing of [absolute](https://developer.mozilla.org/en-US/docs/Web/CSS/length#Absolute_length_units) & [font-relative](https://developer.mozilla.org/en-US/docs/Web/CSS/length#Font-relative_lengths) length units.
+- easily spot inconsistent or mistyped values
+- help to spot overlaps and places to check for unintentional "double styling"
+- highlight weird-edge cases & one-offs that could potentially be investigated.
+
+
+
+
+
+While CSS [unit](https://github.com/jamesshore/quixote/blob/master/README.md) and [regression](https://github.com/Huddle/PhantomCSS) testing do exist, they are far from the standard industry practice. 
+This means we are basically left with two options when dealing with styling:  
+
+- Manually going through all of the includes, noting any media queries that are uncovered,  
+- or wait until you see unexpected behavior and debug issues on an ad-hoc basis
+
+One is incredibly time consuming & tedious. The other is completely reactive & subject to a large degree of chance.
+
+99% of the time, developers opt for the second option. (if it ain't broke...)
+
+
+We can automate the discovery and documentation process using javascript. 
+
+
+
+<!-- 
+Usually this takes the form of a framework like bootstrap or foundation that has so many layers of paint and ad hoc fixes have been applied that [Theseus](https://en.wikipedia.org/wiki/Ship_of_Theseus) would be proud. 
+Perhaps in the beginning a framework like bootstrap or foundation was used, but so many layers of paint and ad hoc fixes have been applied that [Theseus](https://en.wikipedia.org/wiki/Ship_of_Theseus) would be proud. 
+ -->
+<!-- 
+have been applied to the point that 
+but layers upon layers of paint and ad hoc fixes have been applied to the point that 
+[Ship of Theseus](https://en.wikipedia.org/wiki/Ship_of_Theseus) -->
+<!-- Inheriting an existing web project is always one of the more interesting and (potentially infuriating) things that can happen to you as a developer.  -->
+<!-- 
+This scenario is always one of the more interesting and (potentially infuriating) things that can happen to you as a developer. 
+Include a framework like bootstrap or foundation and then pile on top of that 
+ -->
+<!-- 
+of a style sheet scenario where the styleSheets
+This sort of predicament 
+This sort of fear actualize
+apparent then 
+is never more apparent then when a developer inherits an existing web project. 
+ -->
+<!-- This scenario is always one of the more interesting and (potentially infuriating) things that can happen to you as a developer.  -->
+<!-- Inheriting an existing web project is always one of the more interesting and (potentially infuriating) things that can happen to you as a developer.  -->
+<!-- styling often isn't treated with the same care and consideration that the other parts of the frontend stack. -->
+<!-- are built has improved in recent years,  -->
+
+<!-- Tools like Sass/LESS/Stylus have enabled developers to easily write complex and powerful CSS  -->
+
+<!-- and while the overall thoughtfulness around how frontends in general has improved in recent years, --><!-- are built has improved in recent years,  -->
+
+<!-- styling often isn't treated with the same care and consideration that the other parts of the frontend stack.
+
+Marry this apathy with tools like Sass/LESS/Stylus which enable developers to easily write complex and powerful CSS, 
+and it's easy to envision  -->
+<!-- things spiraling out of control relatively quickly.  -->
+<!-- 
+the structure and implementation of styling 
+is still an area where 
+ -->
+<!-- 
+Inheriting an existing web project is always one of the more interesting things that can happen to you as a developer. 
+In the "excitement" of diving into the structure and functionality of the codebase, styling is often overlooked.
+ -->
+
+
+<!-- The [thoughtfulness around how frontends are built](http://shop.oreilly.com/product/0636920040156.do) has started to get better,  -->
+
+
+<!-- In the "excitement" of diving into the structure and functionality of the codebase, styling is often overlooked.
+Even if the codebase has been well documented and written in a clear and concise manor, it's unlikely that much time or effort has been placed in the styling. 
+
+The [thoughtfulness around how frontends are built](http://shop.oreilly.com/product/0636920040156.do) has started to get better, 
+
+the likelihood that the styling has received the same care.  
+-->
+
+<!-- Inheriting an existing web project is always one of the more interesting and (potentially infuriating) things that can happen to you as a developer.  -->
+
+<!-- figuring out how the different pieces fit together and what assumptions where made -->
+
+
+
+
+
+
+Unfortunately, 
+this can lead to substantial 
+when the time comes to make updates to the project, 
+
+the flaws and idiosyncrasies that 
+
+it comes to 
+but can result in trying  to figure out why something 
+
+
+![JAVASCRIPT ALL THE THINGS!](http://www.tricedesigns.com/wp-content/uploads/2015/09/jsatt.jpg)
+<!-- This isn't a bad idea to
+Just want the code? [Here it is](). -->
+
+<!-- could potentially effect your project. 
+of your media  document your  -->
+
+<!-- While CSS unit testing [does exist](https://github.com/jamesshore/quixote/blob/master/README.md), it's far -->
+
+
+This means that, 
+
 
 Unit testing CSS isn't
 Wading into a
 
 Unit testing CSS isn't really a thing.
-Don't care about the reasoning for doing something like this, or what sort of insight
 
-
-Just looking for the snippet
-If you don't care about the rational behind doing something like this
+<!-- Don't care about the reasoning for doing something like this or what sort of insights could possibly be gained, --> 
+If you don't care about the rational behind doing something like this and are just looking for a snippet, go here 
 
 
 
@@ -43,16 +185,29 @@ and element that is being styled at 768
 
 
 #### other solutions
-manually going through all of the includes, noting any media query that
-or wait until you see unexpected behavior and debug the issue then.
+
+While CSS [unit](https://github.com/jamesshore/quixote/blob/master/README.md) and [regression](https://github.com/Huddle/PhantomCSS) testing do exist, they are far from the standard industry practice. 
+
+This means we are basically left with two options when dealing with styling:  
+
+- Manually going through all of the includes, noting any media queries that are uncovered,  
+- or wait until you see unexpected behavior and debug issues on an ad-hoc basis
 
 One is incredibly time consuming & tedious. The other is completely reactive & subject to a large degree of chance.
+
+99% of the time, developers opt for the second option. (if it ain't broke...)
+
+
+We can automate the discovery and documentation process using javascript. 
+
+
+<!-- 
 There are a couple of ways to deal with....
 The first is to manually go through all of module, partial, import, include, vendor, manifest, primary, etc. files, noting any media query that is uncovered.
 
 Unfortunately, any semi-robust or componentized project that is using a preprocessor will probably have a large number of files which would make this process incredibly time consuming and tedious.
 
-A robust and heavily componentized project that is using a preprocessor could have a large number of include files which would make option A incredibly time consuming and tedious.
+A robust and heavily componentized project that is using a preprocessor could have a large number of include files which would make option A incredibly time consuming and tedious. -->
 
 
 
