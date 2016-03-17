@@ -1,7 +1,12 @@
-##Auditing media queries using javascript
+##Auditing media queries using JavaScript
 
 
-**TL;DR:**: You can use JavaScript to get an better understanding of the media queries that are present in your project. Don't care about the rational behind doing something like this and are just looking for a snippet? [go here]()
+**TL;DR:** You can use JavaScript to easily audit the media queries that are present in your project. This could potentially [provide insight]() into portions of your styling that might need to be examined more closely. Don't care about the rational behind doing something like this and are just looking for a snippet? [Head here.]()
+
+<!--
+**TL;DR:** You can use JavaScript to get an better understanding of the media queries that are present in your project. 
+Don't care about the rational behind doing something like this and are just looking for a snippet? [Head here.]()
+-->
 
 <!-- Inheriting an existing web project is always one of the more interesting and (potentially infuriating) things that can happen to you as a developer. 
 
@@ -22,7 +27,8 @@ In my experience, this usually takes the form of a framework like bootstrap or f
 In my experience, this usually takes the form of a framework like bootstrap or foundation that has had so many layers of paint and ad hoc fixes applied to it that [Theseus](https://en.wikipedia.org/wiki/Ship_of_Theseus) would be proud. 
 
 
-The likelihood of confronting this sort of monstrosity is never higher then when a developer inherits an existing web project. <!-- <<< maybe unneeded --> 
+The likelihood of confronting this sort of monstrosity is never higher then when a developer inherits an existing web project. 
+<!-- ^^^ maybe unneeded --> 
 On the surface, poorly written styling might not seem like a big issue. 
 
 Unfortunately, when the time comes to make updates to the project, the flaws and idiosyncrasies that exist in the CSS can
@@ -32,43 +38,59 @@ but due to time constraints and the perceived magnitude of the task, it's someth
 
 In auditing the our media queries, we can 
 
-An audit of the a sites media queries can:<!--  provide insight into:  -->
+An audit of the a sites media queries can:
 
 - highlight places where mixed length unit values might have been used
 - spot inconsistent or mistyped values
 - find potential style overlaps and places to check for unintentional "double styling"
 - point to weird-edge cases & one-offs that could potentially be investigated.
 
-...and this discovery and documentation process can be automated using JavaScript. 
-
-And we can a
-
-
-We can automate the discovery and documentation process using javascript. 
-
-Media queries 
+...and best of all this discovery and documentation process can be automated using JavaScript. 
 
 
 
 
+####What are we doing
 
-If only there was some way to see where potential issues might exist, and start 
+So what exactly will be happening?
 
-and/or 
+- Pick a target [style sheet](https://developer.mozilla.org/en-US/docs/Web/API/Document/styleSheets) and get it's [cssRuleList](https://developer.mozilla.org/en-US/docs/Web/API/CSSRuleList)  
+_Note: Keep in mind that style sheets are subject to the [same-origin policy](https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy). This means that if the style sheet's origin doesn't match that of the page (e.g. being loaded from a CDN), the [cssRules](https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleSheet#cssRules) property of the `CSSStyleSheet` object isn't available and returns `null`. Some thoughts on dealing with this issue can be found [here](http://stackoverflow.com/questions/3211536/accessing-cross-domain-style-sheet-with-cssrules)._
+- loop through this collection of [CSSRules](https://developer.mozilla.org/en-US/docs/Web/API/CSSRule) looking for [CSSMediaRules](https://developer.mozilla.org/en-US/docs/Web/API/CSSMediaRule)
+- When one is found,
+  - if it hasn't been seen before, map it to `mediaQueriesMap` variable we have setup,
+  - increment the count value for this `CSSMediaRule` in the map,
+  - add all `cssRules` found within this particular instance of the media query to the entry in the `mediaQueriesMap` variable,
+- Finally we format `mediaQueriesMap` into a table and print it in the console.
 
 
-high impact low effort
+#### code
+```javascript
+
+console.log('There will be javascript here');
+
+```
 
 
+
+
+
+
+
+
+
+
+---
+---
+---
+
+
+<!-- 
 some low hanging fruit to get started with...
-
 Media Queries are 
 Auditing Media your 
-
-
 We can automate the discovery and documentation process using javascript. 
-
-
+ -->
 
 - bring code into a unified and consistent state
 - preventing the mixing of [absolute](https://developer.mozilla.org/en-US/docs/Web/CSS/length#Absolute_length_units) & [font-relative](https://developer.mozilla.org/en-US/docs/Web/CSS/length#Font-relative_lengths) length units.
@@ -77,16 +99,15 @@ We can automate the discovery and documentation process using javascript.
 - highlight weird-edge cases & one-offs that could potentially be investigated.
 
 
-
+<!--
 CSS [unit](https://github.com/jamesshore/quixote/blob/master/README.md) and [regression](https://github.com/Huddle/PhantomCSS) testing would go a long way in preventing (or at least helping untangle) these sorts of issues, they are far from the standard industry practice. 
 
-<!--
 CSS unit and regression testing might have helped in preventing the issue, but isn't really much use in cleaning up the mess.  
 refactoring becomes the best course of action. 
 don't don't really do much to help with refactoring. 
 -->
 
-
+<!-- 
 
 
 
@@ -101,10 +122,12 @@ Issue begin to arises
 While on the appearing somewhat 
 These sort
 ...this is an issue because...
-
+-->
 
 
 <!-- While CSS [unit](https://github.com/jamesshore/quixote/blob/master/README.md) and [regression](https://github.com/Huddle/PhantomCSS) testing do exist, they are far from the standard industry practice.  -->
+
+<!--
 
 CSS [unit](https://github.com/jamesshore/quixote/blob/master/README.md) and [regression](https://github.com/Huddle/PhantomCSS) testing would go a long way in preventing (or at least helping untangle) the issue, they are far from the standard industry practice. This means we are basically left with two options when dealing with styling:  
 
@@ -117,7 +140,7 @@ One is incredibly time consuming & tedious. The other is completely reactive & s
 
 
 We can automate the discovery and documentation process using javascript. 
-
+--> 
 
 
 <!-- 
@@ -179,22 +202,9 @@ the likelihood that the styling has received the same care.
 
 <!-- figuring out how the different pieces fit together and what assumptions where made -->
 
-
-
-
-
-
-Unfortunately, 
-this can lead to substantial 
-when the time comes to make updates to the project, 
-
-the flaws and idiosyncrasies that 
-
-it comes to 
-but can result in trying  to figure out why something 
-
-
+<!-- 
 ![JAVASCRIPT ALL THE THINGS!](http://www.tricedesigns.com/wp-content/uploads/2015/09/jsatt.jpg)
+-->
 <!-- This isn't a bad idea to
 Just want the code? [Here it is](). -->
 
@@ -292,6 +302,48 @@ console.log('There will be javascript here');
 
 
 ####analyzing the results
+
+So what are we looking for? 
+<!-- 
+Below is an example from a site that I've worked on recently. This was a project that I inherited. 
+Below is an example from a project that I recently inherited. 
+ -->
+In the example below, I've run the audit script on a project that I recently inherited.  
+
+At the top of table, we see several media queries that contain the majority of the rules for this particular style sheet.
+
+We already knew that this project was built using [Foundation 5](http://foundation.zurb.com/sites/docs/v/5.5.3/), so seeing a majority of the [media features](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries#Media_features) statements 
+
+
+
+At the top of table, we see several media queries that contain the majority of the rules for this project. We know that this project was built using Foundation 5, 
+
+so seeing their media feature definitions using the [em length units](https://developer.mozilla.org/en-US/docs/Web/CSS/length#em) is to be expected. These media queries are most likely using
+ [Foundation's built in variables](http://foundation.zurb.com/sites/docs/v/5.5.3/media-queries.html) or at the very least are defined using a value that is consistent with those variables.
+
+
+length unit that is consistent with the vast majority 
+
+so seeing the majority of 
+
+
+
+for this particular style sheet.
+
+We already know that this project was built using Foundation, 
+ so seeing a majority of the media features statements 
+
+
+
+rules inside media queries that are using em length units is to be expected.
+These media queries are most likely using Foundations built in variables, or at the very least are using a length unit that is consistent with the vast majority 
+
+ that 
+
+unit of measurement that .
+
+
+I've worked on recently. This was a project that I inherited. 
 
 
 This a result from a site
