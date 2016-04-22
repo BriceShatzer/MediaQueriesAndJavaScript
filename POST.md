@@ -18,7 +18,7 @@ In the "excitement" of diving into the structure and functionality of the codeba
 <!-- While the overall [thoughtfulness around how frontends are built](http://shop.oreilly.com/product/0636920040156.do) in general has improved in recent years,  -->
 
 While the overall [thoughtfulness around how frontends are built](http://shop.oreilly.com/product/0636920040156.do) has improved in recent years,
-generally speaking, styling simply isn't treated with the same amount of care and consideration as other parts of the frontend stack. Marry this apathy with tools like Sass/LESS/Stylus which enable developers to easily write complex and powerful CSS, and it's easy to envision the sort of tangled, nightmarish abomination that might exist in this world. 
+generally speaking, styling simply isn't treated with the same amount of care and consideration as other parts of the front-end stack. Marry this apathy with tools like Sass/LESS/Stylus which enable developers to easily write complex and powerful CSS, and it's easy to envision the sort of tangled, nightmarish abomination that might exist in this world. 
 
 <!-- The likelihood of confronting this sort of monstrosity is never more likely then when a developer inherits an existing web project. <!-- <<< maybe unneeded --> 
 
@@ -300,7 +300,9 @@ console.log('There will be javascript here');
 
 ```
 
-
+---
+---
+---
 ####analyzing the results
 
 So what are we looking for? 
@@ -316,40 +318,74 @@ We already knew that this project was built using [Foundation 5](http://foundati
 
 
 
-At the top of table, we see several media queries that contain the majority of the rules for this project. We know that this project was built using Foundation 5, 
+At the top of table we see several media queries that contain the majority of the rules for this project. We know that this project was built using Foundation 5, so seeing their media feature definitions using the [em length units](https://developer.mozilla.org/en-US/docs/Web/CSS/length#em) is to be expected. These media queries are most likely using [Foundation's built in variables](http://foundation.zurb.com/sites/docs/v/5.5.3/media-queries.html) or at the very least are defined using a value that is consistent with those variables.
 
-so seeing their media feature definitions using the [em length units](https://developer.mozilla.org/en-US/docs/Web/CSS/length#em) is to be expected. These media queries are most likely using
- [Foundation's built in variables](http://foundation.zurb.com/sites/docs/v/5.5.3/media-queries.html) or at the very least are defined using a value that is consistent with those variables.
-
-
-length unit that is consistent with the vast majority 
-
-so seeing the majority of 
+Around #14 (`"screen and (max-width: 1010px)`) we see the media queries begin to be defined using the [absolute](https://developer.mozilla.org/en-US/docs/Web/CSS/length#Absolute_length_units) length unit of `px`.  
+While the arguments can be made for using either length unit (`px` or `em`) in media query definitions, the the bigger issue in this particular instance is of consistency. With the vast majority of the styling rules being housed in `em` based media queries, these `px` based definitions [stand out](https://youtu.be/ueZ6tvqhk8U?t=20s), and should be examined more closely for [code smell](http://csswizardry.com/2012/11/code-smells-in-css/), adherence/disregard for best practices, and broken code. At the very least, they should be rewritten to use the established methodology of the rest of the project. 
 
 
-
-for this particular style sheet.
-
-We already know that this project was built using Foundation, 
- so seeing a majority of the media features statements 
-
+<!-- The length unit inconsistencies — notwithstanding, #17 ( `"screen and (max-width: 770px)"` )  -->
+<!-- Notwithstanding the length unit inconsistencies mentioned previously, their doesn't seem to be anything inherently wrong at first glance.  
+The issue starts to become more apparent when examining some of the other media queries. 
+-->
 
 
-rules inside media queries that are using em length units is to be expected.
-These media queries are most likely using Foundations built in variables, or at the very least are using a length unit that is consistent with the vast majority 
+The next point of interest involves #17 ( `"screen and (max-width: 770px)"` ). 
+Beyond the previously mentioned length unit inconsistencies, their doesn't seem to be anything inherently wrong with this particular media query at first glance. The issue starts to become more apparent when it is compared against some of the other media queries. #16 ( `"screen and (max-width: 768px) and (min-width: 320px)"` ) and #19 ( `"screen and (max-width: 768px)"` ) are using incredibly similar (but not quite matching) values in their definitions.
 
- that 
-
-unit of measurement that .
-
-
-I've worked on recently. This was a project that I inherited. 
+The odds of a specific rule needing to be exactly 2px smaller than an established breakpoint isn't very high. 
+The most likely explanation is that the author either forgot or wasn't aware of the exact breakpoint that is used elsewhere in the project. 
+Either way, this can be viewed as something that should be flagged for a closer look. 
 
 
-This a result from a site
-I've used
+<!-- The most likely reason for this discrepancy is that the author either forgot, or wasn't aware of the exact breakpoint that is used elsewhere in the project.  -->
+The author either forgot, or wasn't aware of the exact breakpoint that is used elsewhere in the project. 
+Either way, this can be viewed as something that should be flagged for a closer look. 
 
 
+forgetting the exact breakpoint that they should be using
+
+
+There a couple which are using incredibly close (but not quite matching) values in their definitions, 
+that are using similar values in their definitions.
+There are a few that are 
+ it's apparent that 
+
+
+Taking a look at some of the other media queries which 
+Looking at media queries that have similar 
+
+
+
+multiple other media queries are using an incredibly close (but not quite matching) values in their definitions. 
+= #16 ( `"screen and (max-width: 768px) and (min-width: 320px)"` )
+= #19 ( `"screen and (max-width: 768px)"` )
+
+
+
+= #21 ( `"screen and (min-width: 768px)"` )
+
+
+This could be an instance of 
+or the author forgetting the exact breakpoint 
+easily spot inconsistent or mistyped values
+
+(#17 vs #16,#19,21 )
+
+Within the collection of `px` defined 
+
+it provides a starting point from which to being
+
+...at the very least, these should be rewritten to used the established methodology. 
+
+
+ refactor  
+
+
+
+
+
+<!-- last I remember, I was working in this area -->
 At the top of table, we see -several media queries- that contain the majority of the rules for this particular style sheet.
 They're all
 ...using
@@ -370,18 +406,19 @@ and element that is being styled at 768
 
 
 
+
+<!--
 and checking the documentation
 They are all using em as their unit of measurement.
-
 
 em that contain a large
 large collections  chunk of style rules that were created inside media
 
 all of media queries that were created using foundation variables
+-->
 
-
-
-
+---
+---
 ---
 
 #### expanding the usage
