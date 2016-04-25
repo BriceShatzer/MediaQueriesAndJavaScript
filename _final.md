@@ -95,20 +95,21 @@ console.log(csv);
 So what are we looking for? Generally speaking we're on the look out for:
 
 - inconsistent or mistyped values
-- potential definition overlaps and places to check for unintentional "double styling"
 - weird edge cases & one-offs that could potentially need investigating.
+- potential definition overlaps and places to check for unintentional "double styling"
 
 
 In the example below, I've run the audit script on a project that I recently inherited.  
 
-At the top of table we see several media queries that contain the majority of the rules for this project. We know that this project was built using [Foundation 5](http://foundation.zurb.com/sites/docs/v/5.5.3/), so seeing their media feature definitions using the [em length units](https://developer.mozilla.org/en-US/docs/Web/CSS/length#em) is to be expected. These media queries are most likely using [Foundation's built in variables](http://foundation.zurb.com/sites/docs/v/5.5.3/media-queries.html) or at the very least are defined using a value that is consistent with those variables.
+At the top of table we see several media queries that contain the majority of the rules for this project. We know that this project was built uing [Foundation 5](http://foundation.zurb.com/sites/docs/v/5.5.3/), so seeing their media feature definitions using the [em length units](https://developer.mozilla.org/en-US/docs/Web/CSS/length#em) is to be expected. These media queries are most likely using [Foundation's built in variables](http://foundation.zurb.com/sites/docs/v/5.5.3/media-queries.html) or at the very least are defined using a value that is consistent with those variables.
 
-Around #14 ( `"screen and (max-width:1010px)` ) we see the media queries begin to be defined using the [absolute](https://developer.mozilla.org/en-US/docs/Web/CSS/length#Absolute_length_units) length unit of `px`.  
-While the arguments can be made for using either length unit (`px` or `em`) in media query definitions, the the bigger issue in this particular instance is of consistency. With the vast majority of the styling rules being housed in `em` based media queries, these `px` based definitions [stand out](https://youtu.be/ueZ6tvqhk8U?t=20s) and provide a great starting point from which to begin examining things more closely.
+Around #14 (`"screen and (max-width: 1010px)`) we see the media queries begin to be defined using the [absolute](https://developer.mozilla.org/en-US/docs/Web/CSS/length#Absolute_length_units) length unit of `px`.  
+While the arguments can be made for using either length unit (`px` or `em`) in media query definitions, the bigger issue in this particular instance is of consistency. With the vast majority of the styling rules being housed in `em` based media queries, these `px` based definitions [stand out](https://youtu.be/ueZ6tvqhk8U?t=20s), and should be examined more closely for [code smell](http://csswizardry.com/2012/11/code-smells-in-css/), adherence/disregard for best practices, and broken code. At the very least, they should be rewritten to use the established methodology of the rest of the project. 
 
-
-
-
+The next point of interest involves #17 ( `"screen and (max-width: 770px)"` ). 
+Beyond the previously mentioned length unit inconsistencies, their doesn't seem to be anything inherently wrong with this particular media query at first glance. The issue starts to become more apparent when it is compared against some of the other media queries. #16 ( `"screen and (max-width: 768px) and (min-width: 320px)"` ) and #19 ( `"screen and (max-width: 768px)"` ) are using incredibly similar (but not quite matching) values in their definitions.
+The odds of a specific rule needing to be exactly 2px smaller than an established breakpoint isn't very high. 
+The more likely explanation is that the author either forgot or wasn't aware of the exact breakpoint that is used elsewhere in the project. Either way, this can be viewed as something that should be flagged for a closer look. 
 
 
 
