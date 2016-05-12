@@ -1,6 +1,6 @@
 ##Auditing media queries using JavaScript
 
-**TL;DR:** *You can use JavaScript to easily audit the media queries that are present in your project. This could potentially [provide insight](https://github.com/BriceShatzer/MediaQueriesAndJavaScript/blob/master/_final.md#analyzing-the-results) into portions of your styling that might need to be examined more closely. Don't care about the rational behind doing something like this and are just looking for a snippet? [Head here.](https://github.com/BriceShatzer/MediaQueriesAndJavaScript/blob/master/_final.md#code)*
+**TL;DR:** *You can use JavaScript to easily audit the media queries that are present in your project. This could potentially [provide insight](#analyzing-the-results) into portions of your styling that might need to be examined more closely. Don't care about the rational behind doing something like this and are just looking for a snippet? [Head here.](#code)*
 
 
 While the overall [thoughtfulness around how frontends are built](http://shop.oreilly.com/product/0636920040156.do) has improved in recent years,
