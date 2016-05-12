@@ -336,10 +336,73 @@ The issue starts to become more apparent when examining some of the other media 
 
 The next point of interest involves #17 ( `"screen and (max-width: 770px)"` ). 
 Beyond the previously mentioned length unit inconsistencies, their doesn't seem to be anything inherently wrong with this particular media query at first glance. The issue starts to become more apparent when it is compared against some of the other media queries. #16 ( `"screen and (max-width: 768px) and (min-width: 320px)"` ) and #19 ( `"screen and (max-width: 768px)"` ) are using incredibly similar (but not quite matching) values in their definitions.
-
 The odds of a specific rule needing to be exactly 2px smaller than an established breakpoint isn't very high. 
-The most likely explanation is that the author either forgot or wasn't aware of the exact breakpoint that is used elsewhere in the project. 
-Either way, this can be viewed as something that should be flagged for a closer look. 
+The more likely explanation is that the author either forgot or wasn't aware of the exact breakpoint that is used elsewhere in the project. Either way, this can be viewed as something that should be flagged for a closer look. 
+
+
+
+Finally, #20 ( `"screen and (min-width: 768px)"` ) is classic example of an overlap taking place. 
+
+Finally, #20 ( `"screen and (min-width: 768px)"` ) appears to be overlapping with some media queries that are set to use `"max-width: 768px"` ( #16 & #19).
+
+We know that with some media queries that are set to use `"max-width: 768px"` ( #16 & #19) 
+
+It's no accident that frameworks like Bootstrap & Foundation define their breakpoints in a consistent manor that prevents overlap 
+(examples [A](https://github.com/twbs/bootstrap/blob/master/less/variables.less#L314) & [B](http://foundation.zurb.com/sites/docs/media-queries.html#copy-btn-0)).
+
+So, when there are multiple definitions checking a particular [media feature](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries#Media_features) for an identical value but with opposing prefixes, 
+it is something that should be investigated. 
+
+Perhaps it's just a simple inconsistency in how a particular breakpoint was authored, but there is also a possibility of a huge issue where multiple elements are getting conflicting styling instructions when the width is 768px. 
+
+Either way, it's an 
+
+
+but it has the potential to 
+
+but there is also a possibility of a huge issue where multiple elements are getting conflicting styling instructions when the width is 768px. 
+
+
+
+a large set of elements are getting conflicting styling instructions when the width is 768px. 
+
+At best, it's just a simple inconsistency in how a that particular breakpoint was authored, 
+
+in a way that prevents them from over 
+having multiple definitions checking a [media feature](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries#Media_features) for and identical value, but with opposing prefixes, 
+
+
+at worst a set of elements are getting conflicting styling instructions when the width is 768px. 
+
+
+This means that consistency
+value that is matched 
+
+The reason that frameworks like Foundation & Bootstrap define their breakpoints so that they don't 
+
+[Foundation](http://foundation.zurb.com/sites/docs/media-queries.html#copy-btn-0)
+[Bootstrap](https://github.com/twbs/bootstrap/blob/master/less/variables.less#L314) 
+
+
+Bootstrap  ( Extra Small is <768px, while ≥768px, ) Small devices Tablets (≥768px)  Medium devices Desktops (≥992px)    Large devices Desktops (≥1200px)
+
+
+
+at a screen width of 768
+generally this sort of overall is inadvertent
+
+
+inadvertent
+
+that ha
+
+
+
+
+
+
+
+
 
 
 <!-- The most likely reason for this discrepancy is that the author either forgot, or wasn't aware of the exact breakpoint that is used elsewhere in the project.  -->
