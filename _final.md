@@ -101,12 +101,15 @@ Specifically, we're on the looking for things like:
 - potential definition overlaps and places to check for unintentional "double styling"
 
 
-In the example below, I've run the audit script on a project that I recently inherited.  
+**Let's look at an example.**  
+I've run the audit script on a project that I recently inherited and the image below is what was outputed to the console.  
+
+![https://raw.githubusercontent.com/BriceShatzer/MediaQueriesAndJavaScript/master/example.png](https://raw.githubusercontent.com/BriceShatzer/MediaQueriesAndJavaScript/master/example.png "Console result after running the script")
+
 
 At the top of table we see several media queries that contain the majority of the rules for this project. We know that this project was built uing [Foundation 5](http://foundation.zurb.com/sites/docs/v/5.5.3/), so seeing their media feature definitions using the [em length units](https://developer.mozilla.org/en-US/docs/Web/CSS/length#em) is to be expected. These media queries are most likely using [Foundation's built in variables](http://foundation.zurb.com/sites/docs/v/5.5.3/media-queries.html) or are defined using a value that is consistent with those variables.
 
-Around #14 (`"screen and (max-width: 1010px)`) we see the media queries begin to be defined using the [absolute](https://developer.mozilla.org/en-US/docs/Web/CSS/length#Absolute_length_units) length unit of `px`.  
-While arguments can be made for using either length unit (`px` or `em`) in media query definitions, the bigger issue in this particular instance is of consistency. With the vast majority of the styling rules being housed in `em` based media queries, these `px` based definitions [stand out](https://youtu.be/ueZ6tvqhk8U?t=20s), and should be examined more closely for [code smell](http://csswizardry.com/2012/11/code-smells-in-css/), adherence/disregard for best practices, and broken code. At the very least, they should be rewritten to use the established methodology of the rest of the project. 
+Around #14 (`"screen and (max-width: 1010px)`) we see the media queries begin to be defined using the [absolute](https://developer.mozilla.org/en-US/docs/Web/CSS/length#Absolute_length_units) length unit of `px`. While arguments can be made for using either length unit (`px` or `em`) in media query definitions, the bigger issue in this particular instance is of consistency. With the vast majority of the styling rules being housed in `em` based media queries, these `px` based definitions [stand out](https://youtu.be/ueZ6tvqhk8U?t=20s), and should be examined more closely for [code smell](http://csswizardry.com/2012/11/code-smells-in-css/), adherence/disregard for best practices, and broken code. At the very least, they should be rewritten to use the established methodology of the rest of the project. 
 
 The next point of interest involves #17 ( `"screen and (max-width: 770px)"` ). 
 Beyond the previously mentioned length unit inconsistencies, their doesn't seem to be anything inherently wrong with this particular media query at first glance. The issue starts to become more apparent when it is compared against some of the other media queries. #16 ( `"screen and (max-width: 768px) and (min-width: 320px)"` ) and #19 ( `"screen and (max-width: 768px)"` ) are using incredibly similar (but not quite matching) values in their definitions.
@@ -133,7 +136,9 @@ Array.prototype.forEach.call(rules_at_this_breakpoint, function(rule){
 });
 ```
 
-The resulting output could be useful in tracking down where exactly within the a project's uncompiled Sass/LESS/Stylus files to start looking for an issue.
+The resulting output (below) could be useful in tracking down where exactly within the a project's uncompiled Sass/LESS/Stylus files to start looking for an issue.  
+
+![https://raw.githubusercontent.com/BriceShatzer/MediaQueriesAndJavaScript/master/expanded-use_example.png](https://raw.githubusercontent.com/BriceShatzer/MediaQueriesAndJavaScript/master/expanded-use_example.png "Using the console to get more info on the selectors inside a media query")
 
 
 
