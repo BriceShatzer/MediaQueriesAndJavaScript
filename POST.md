@@ -349,20 +349,16 @@ We know that with some media queries that are set to use `"max-width: 768px"` ( 
 
 It's no accident that frameworks like Bootstrap & Foundation define their breakpoints in a consistent manor that prevents overlap 
 (examples [A](https://github.com/twbs/bootstrap/blob/master/less/variables.less#L314) & [B](http://foundation.zurb.com/sites/docs/media-queries.html#copy-btn-0)).
+It's no accident that CSS frameworks define their breakpoints in a consistent manor that prevents overlap 
+(e.g. [Bootstrap](https://github.com/twbs/bootstrap/blob/master/less/variables.less#L314) & [Foundation](http://foundation.zurb.com/sites/docs/media-queries.html#copy-btn-0)).
 
 So, when there are multiple definitions checking a particular [media feature](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries#Media_features) for an identical value but with opposing prefixes, 
 it is something that should be investigated. 
 
 Perhaps it's just a simple inconsistency in how a particular breakpoint was authored, but there is also a possibility of a huge issue where multiple elements are getting conflicting styling instructions when the width is 768px. 
 
-Either way, it's an 
-
-
 but it has the potential to 
-
 but there is also a possibility of a huge issue where multiple elements are getting conflicting styling instructions when the width is 768px. 
-
-
 
 a large set of elements are getting conflicting styling instructions when the width is 768px. 
 
@@ -371,12 +367,7 @@ At best, it's just a simple inconsistency in how a that particular breakpoint wa
 in a way that prevents them from over 
 having multiple definitions checking a [media feature](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries#Media_features) for and identical value, but with opposing prefixes, 
 
-
 at worst a set of elements are getting conflicting styling instructions when the width is 768px. 
-
-
-This means that consistency
-value that is matched 
 
 The reason that frameworks like Foundation & Bootstrap define their breakpoints so that they don't 
 
@@ -384,21 +375,48 @@ The reason that frameworks like Foundation & Bootstrap define their breakpoints 
 [Bootstrap](https://github.com/twbs/bootstrap/blob/master/less/variables.less#L314) 
 
 
-Bootstrap  ( Extra Small is <768px, while ≥768px, ) Small devices Tablets (≥768px)  Medium devices Desktops (≥992px)    Large devices Desktops (≥1200px)
-
-
-
-at a screen width of 768
-generally this sort of overall is inadvertent
-
-
-inadvertent
-
-that ha
 
 
 
 
+
+The general idea is to try to survey the CSS landscape from 30,000 feet, 
+
+and look for things that seem different or [stand out](https://youtu.be/ueZ6tvqhk8U?t=20s). [Developers are creatures of habbit](https://www.safaribooksonline.com/a/the-software-craftsman/70409/).
+If you see smoke rising out of the forest, it's probably worth taking a closer look 
+
+forest from 
+
+forCSS from 30,000 feet. If you see smoke 
+What are doing once we have this data?
+
+Once we have this data,
+
+What do we do with this data? The general idea is to look for things that that seem [different or stand out](https://youtu.be/ueZ6tvqhk8U?t=20s). [Developers are creatures of habit](https://www.safaribooksonline.com/a/the-software-craftsman/70409/), so if something seems inconsistent, peculiar, or out-of-place, it's likely that it was written by a different developer, or under different circumstances. These are the places we want to initially focus on, as they are more likely yield potential refactoring opportunities. At the very least they can be brought into alignment with the rest of the codebase to help make everything more maintainable going forward.
+
+Specifically, we're on the looking for things like:
+
+
+
+
+on as they'll pro
+attention 
+What are doing once we have this data?
+
+The general idea is to try to survey the CSS landscape from 30,000 feet. 
+
+It's unlikely (but not impossible) that anything will appear to be outright broken from this vantage point i,
+
+
+
+
+We obviously want to notice any glaring issues, but if this is a codebase that is already in production, the likelihood of finding stuff that is broken at this 
+
+things that seem different or [stand out](https://youtu.be/ueZ6tvqhk8U?t=20s). 
+
+Once we have this data, what are we looking for? 
+
+Generally speaking we're on the look out for:
 
 
 

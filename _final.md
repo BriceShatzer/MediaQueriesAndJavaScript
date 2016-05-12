@@ -92,7 +92,9 @@ console.log(csv);
 
 ####Analyzing the results
 
-So what are we looking for? Generally speaking we're on the look out for:
+What do we do with this data? The general idea is to look for things that that seem [different or stand out](https://youtu.be/ueZ6tvqhk8U?t=20s). [Developers are creatures of habit](https://www.safaribooksonline.com/a/the-software-craftsman/70409/), so if something seems inconsistent, peculiar, or out-of-place, it's likely that it was written by a different developer, or under different circumstances. These are the places we want to initially focus on, as they are more likely yield potential refactoring opportunities. At the very least they can be brought into alignment with the rest of the codebase to help make everything more maintainable going forward.
+
+Specifically, we're on the looking for things like:
 
 - inconsistent or mistyped values
 - weird edge cases & one-offs that could potentially need investigating.
@@ -112,14 +114,26 @@ The odds of a specific rule needing to be exactly 2px smaller than an establishe
 The more likely explanation is that the author either forgot or wasn't aware of the exact breakpoint that is used elsewhere in the project. Either way, this portion of the code is probably something that should be flagged for a closer look. 
 
 Finally, #20 ( `"screen and (min-width: 768px)"` ) appears to be overlapping with some media queries that are set to use `"max-width: 768px"` ( #16 & #19).
-It's no accident that frameworks like Bootstrap & Foundation define their breakpoints in a consistent manor that prevents overlap 
-(examples [A](https://github.com/twbs/bootstrap/blob/master/less/variables.less#L314) & [B](http://foundation.zurb.com/sites/docs/media-queries.html#copy-btn-0)), so when there are multiple definitions checking a particular [media feature](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries#Media_features) for an identical value but with opposing prefixes, it is something that should be investigated. Perhaps it's just a simple inconsistency in how a particular breakpoint was authored, but there is also a possibility of a huge issue where multiple elements are getting conflicting styling instructions when the width is 768px. 
+It's no accident that CSS frameworks define their breakpoints in a consistent manor that prevents overlap (e.g. [Bootstrap](https://github.com/twbs/bootstrap/blob/master/less/variables.less#L314) & [Foundation](http://foundation.zurb.com/sites/docs/media-queries.html#copy-btn-0)), so when there are multiple definitions checking a particular [media feature](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries#Media_features) for an identical value but with opposing prefixes, it is something that should be investigated. Perhaps it's just a simple inconsistency in how a particular breakpoint was authored, but there is also a possibility of a huge issue where multiple elements are getting conflicting styling instructions when the width is 768px. 
 
 
-The general idea is to look for things that seem different or [stand out](https://youtu.be/ueZ6tvqhk8U?t=20s). [Developers are creatures of habbit](https://www.safaribooksonline.com/a/the-software-craftsman/70409/). If something 
 
-[Developers are creatures of habbit](https://www.safaribooksonline.com/a/the-software-craftsman/70409/), 
-it's likely that it was written by a different developer or at a different time
+#### Expanding the usage
+
+
+
+The `mediaQueriesMap` map that is created is fairly flexible. In addition to creating a general overview, it can be used to drill into specific media queries.
+In the prior example we can see that the media query `screen and (max-width: 1000px)` is being used in the style sheet 13 different times to declare 13 different rules. Using our existing `mediaQueriesMap` variable we can see what [selectors](https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleRule#selectorText) are being used for each of those rules.
+```javascript
+var rules_at_this_breakpoint = mediaQueriesMap.get("screen and (max-width: 1000px)").styleRules
+
+
+Array.prototype.forEach.call(rules_at_this_breakpoint, function(rule){
+    console.log(rule.selectorText);
+});
+```
+
+The resulting output could be useful in tracking down where exactly within the a project's uncompiled Sass/LESS/Stylus files to start looking for an issue.
 
 
 
