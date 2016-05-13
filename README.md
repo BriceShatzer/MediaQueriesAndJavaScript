@@ -3,12 +3,11 @@
 **TL;DR:** *You can use JavaScript to easily audit the media queries that are present in your project. This could potentially [provide insight](#analyzing-the-results) into portions of your styling that might need to be examined more closely. Don't care about the rational behind doing something like this and are just looking for a snippet? [Head here.](#code)*
 
 
-While the overall [thoughtfulness around how frontends are built](http://shop.oreilly.com/product/0636920040156.do) has improved in recent years,
-generally speaking, styling simply isn't treated with the same amount of care and consideration as other parts of the front-end stack. Marry this apathy with tools like Sass/LESS/Stylus which enable developers to easily write complex and powerful CSS, and it's easy to envision the sort of tangled, nightmarish abomination that might exist in this world. 
+While the overall [thoughtfulness around how frontends are built](http://shop.oreilly.com/product/0636920040156.do) has improved in recent years, generally speaking, styling simply isn't treated with the same amount of care and consideration as other parts of the front-end stack. Marry this apathy with tools like Sass/LESS/Stylus which enable developers to easily write complex and powerful CSS, and it's easy to envision the sort of tangled, nightmarish abomination that might exist in this world. 
 
-In my experience, this usually takes the form of a framework like bootstrap or foundation that has had so many layers of paint and ad hoc fixes applied to it that [Theseus](https://en.wikipedia.org/wiki/Ship_of_Theseus) would be proud. 
+In my experience, this usually takes the form of a framework like Bootstrap or Foundation that has had so many layers of paint and ad hoc fixes applied to it that [Theseus](https://en.wikipedia.org/wiki/Ship_of_Theseus) would be proud. 
 
-The likelihood of confronting this sort of monstrosity is never higher then when a developer inherits an existing web project, and on the surface, poorly written styling might not seem like a big issue.  Unfortunately, when the time comes to make updates to the project, the flaws and idiosyncrasies that exist in the CSS can quickly become a massive time sink as ad hoc fixes for one problem [cascades](https://youtu.be/ja0jS_toKxk) into other issues. The ideal course of action would be to go through and completely refactor the styling, but due to time constraints and the perceived magnitude of the task, it's something that is rarely is attempted. 
+The likelihood of confronting this sort of monstrosity is never higher than when a developer inherits an existing web project, and on the surface, poorly written styling might not seem like a big issue.  Unfortunately, when the time comes to make updates to the project, the flaws and idiosyncrasies that exist in the CSS can quickly become a massive time sink as ad hoc fixes for one problem [cascades](https://youtu.be/ja0jS_toKxk) into other issues. The ideal course of action would be to go through and completely refactor the styling, but due to time constraints and the perceived magnitude of the task, its something that is rarely is attempted. 
 
 One solution to this apprenhension is to audit the style sheet's media queries. This sort of analysis is an easy way to see where potential issues and low-hanging fruit might exist. This provides a clear starting place for any refactoring work and helps make a seemingly herculean task into something much more palatable. Best of all, this discovery and documentation process can be automated using JavaScript. 
 
@@ -102,12 +101,12 @@ Specifically, we're on the looking for things like:
 
 
 **Let's look at an example.**  
-I've run the audit script on a project that I recently inherited and the image below is what was outputed to the console.  
+I've run the audit script on a project that I recently inherited, and the image below is what was outputed to the console.  
 
 ![https://raw.githubusercontent.com/BriceShatzer/MediaQueriesAndJavaScript/master/example.png](https://raw.githubusercontent.com/BriceShatzer/MediaQueriesAndJavaScript/master/example.png "Console result after running the script")
 
 
-At the top of table we see several media queries that contain the majority of the rules for this project. We know that this project was built uing [Foundation 5](http://foundation.zurb.com/sites/docs/v/5.5.3/), so seeing their media feature definitions using the [em length units](https://developer.mozilla.org/en-US/docs/Web/CSS/length#em) is to be expected. These media queries are most likely using [Foundation's built in variables](http://foundation.zurb.com/sites/docs/v/5.5.3/media-queries.html) or are defined using a value that is consistent with those variables.
+At the top of table, we see several media queries that contain the majority of the rules for this project. We know that this project was built uing [Foundation 5](http://foundation.zurb.com/sites/docs/v/5.5.3/), so seeing their media feature definitions using the [em length units](https://developer.mozilla.org/en-US/docs/Web/CSS/length#em) is to be expected. These media queries are most likely using [Foundation's built in variables](http://foundation.zurb.com/sites/docs/v/5.5.3/media-queries.html) or are defined using a value that is consistent with those variables.
 
 Around #14 (`"screen and (max-width: 1010px)`) we see the media queries begin to be defined using the [absolute](https://developer.mozilla.org/en-US/docs/Web/CSS/length#Absolute_length_units) length unit of `px`. While arguments can be made for using either length unit (`px` or `em`) in media query definitions, the bigger issue in this particular instance is of consistency. With the vast majority of the styling rules being housed in `em` based media queries, these `px` based definitions stand out, and should be examined more closely for [code smell](http://csswizardry.com/2012/11/code-smells-in-css/), adherence/disregard for best practices, and broken code. At the very least, they should be rewritten to use the established methodology of the rest of the project. 
 
